@@ -6,4 +6,19 @@ package com.mycompany.app;
 public class AppTest
 {
     private static final String MESSAGE = "Hello World!";
+
+    @Test
+void testMain() {
+    // TODO: Implement test
+}
+
+    @Test
+void testMainWithNullInput() {
+    // TODO: Implement null input test
+}
+
+    @Test
+void testGetMessage() {
+    // TODO: Implement test
+}
 }
