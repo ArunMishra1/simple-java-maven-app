@@ -59,4 +59,72 @@ void testGetMessage() {
     // String result = ...
     // assertEquals(expected, result);
 }
+
+
+    @InjectMocks
+    private App app;
+
+    @Test
+    @DisplayName("main")
+    void testMain() {
+        // Arrange
+        String[] args = mock(String[].class);
+
+        // Act
+        app.main(args);
+
+        // Assert
+        // Verify the method's side effects
+        verify(app, times(1)).main(args);
+    }
+
+    @ParameterizedTest
+    @MethodSource("mainArguments")
+    @DisplayName("main with multiple inputs")
+    void testMainParameterized(String[] args) {
+        // Act
+        app.main(args);
+
+        // Assert
+        // Verify the method's side effects
+    }
+
+    private static Stream<Arguments> mainArguments() {
+        return Stream.of(
+            Arguments.of(mock(String[].class)),
+            Arguments.of(mock(String[].class))
+        );
+    }
+
+    @Test
+    @DisplayName("get message")
+    void testGetMessage() {
+        // Arrange
+
+        // Act
+        String result =         app.getMessage();
+
+        // Assert
+        assertThat(result).isNotEmpty();
+    }
+
+    @ParameterizedTest
+    @MethodSource("getMessageArguments")
+    @DisplayName("get message with multiple inputs")
+    void testGetMessageParameterized() {
+        // Act
+        String result =         app.getMessage();
+
+        // Assert
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> getMessageArguments() {
+        return Stream.of(
+            Arguments.of("testValue"),
+            Arguments.of("alternativeTestValue")
+        );
+    }
+
+
 }
